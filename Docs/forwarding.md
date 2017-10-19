@@ -1,4 +1,4 @@
-```
+```yaml
 <extension name="call_forwarding_activativation">
  <condition field="destination_number" expression="^\*72$">
     <action application="play_and_get_digits" data="3 12 1 14000 # tone_stream://%(10000,0,350,440) silence_stream://250 cfwd_num \d+"/>      
