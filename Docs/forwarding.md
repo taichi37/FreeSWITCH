@@ -8,7 +8,7 @@
  </condition>
 </extension>
 ```
- 
+``` 
 <extension name="call_forwarding_deactivation">
  <condition field="destination_number" expression="^\*73$">        
     <action application="hash" data="delete/${domain_name}-call_forward/${caller_id_number}/${destination_number}"/>
@@ -16,9 +16,12 @@
     <action application="hangup"/>
  </condition>
 </extension>
+```
  
+``` 
 <extension name="call_forwarding_number" continue="true">
  <condition>
     <action application="set" data="call_forwarding_number=${hash(select/${domain_name}-call_forward/${destination_number})}"/>
  </condition>
 </extension>
+```
