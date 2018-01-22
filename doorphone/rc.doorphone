@@ -1,0 +1,37 @@
+#!/bin/sh
+# Arduino NANO
+
+start()
+{
+    /usr/bin/linphonecsh init
+
+    sleep 6
+
+    /usr/bin/linphonecsh register --host 192.168.88.100:60260 --username 1019 --password 0909483667
+
+    /usr/bin/linphonecsh generic 'autoanswer enable'
+
+    /usr/bin/lua /home/jesse/door.lua &
+}
+
+
+stop()
+{
+    killall -u jesse lua
+
+    /usr/bin/linphonecsh generic 'unregister'
+
+    /usr/bin/linphonecsh exit
+}
+
+
+case "$1" in
+    'start')
+        start
+        ;;
+    'stop')
+        stop
+        ;;
+    *)
+        echo "usage $0 start|stop"
+esac
