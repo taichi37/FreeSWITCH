@@ -20,5 +20,3 @@ while 1 do
 
     sleep( 0.1 );
 end
-
--- INSERT --                                                  15,7          All
