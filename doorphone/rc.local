@@ -1,0 +1,28 @@
+#!/bin/sh 
+# 
+# /etc/rc.d/rc.local:  Local system initialization script. 
+# 
+# Put any local startup commands in here.  Also, if you have 
+# anything that needs to be run at shutdown time you can 
+# make an /etc/rc.d/rc.local_shutdown script and put those 
+# commands in there. 
+ 
+# FreeSWITCH 
+if [ -x /etc/rc.d/rc.freeswitch ]; then 
+    /etc/rc.d/rc.freeswitch start 
+fi 
+ 
+sleep 5 
+ 
+ 
+# Arduino NANO 
+ 
+if [[ -e /dev/ttyUSB0 && -r /dev/ttyUSB0 && -w /dev/ttyUSB0 ]] 
+then 
+    stty -F /dev/ttyUSB0 line 0 min 0 time 0 -brkint -icrnl -imaxbel -opost -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke 9600 
+fi 
+ 
+ 
+if [ -x /etc/rc.d/rc.doorphone ]; then 
+    su jesse -c "/etc/rc.d/rc.doorphone start" 
+fi
